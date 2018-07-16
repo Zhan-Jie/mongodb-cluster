@@ -1,0 +1,13 @@
+- name: 创建相关目录
+  file: name={{ item }} state=directory
+  with:
+  - /var/log/mongodb
+  - /var/lib/mongodb/shard-1
+  - /var/run/mongodb
+  - /home/mongodb
+
+- name: 复制配置文件
+  template: src=shard-1.conf.j2 dest=/etc/mongo-shard-1.conf
+
+- name: 启动mongodb
+  shell: "mongod -f /etc/mongo-shard-1.conf"

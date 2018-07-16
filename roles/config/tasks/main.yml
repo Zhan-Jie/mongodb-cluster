@@ -1,0 +1,13 @@
+- name: 创建相关目录
+  file: name={{ item }} state=directory
+  with:
+  - /var/log/mongodb
+  - /var/lib/mongodb/config
+  - /var/run/mongodb
+  - /home/mongodb
+
+- name: 复制配置文件
+  template: src=config.conf.j2 dest=/etc/mongo-config.conf
+
+- name: 启动mongodb
+  shell: "mongod -f /etc/mongo-config.conf"

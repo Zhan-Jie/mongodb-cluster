@@ -1,0 +1,27 @@
+- hosts: 
+  - config
+  - shard
+  - mongos
+  roles:
+  - prepare
+
+- hosts: config
+  roles:
+  - config
+
+- hosts: config-primary
+  roles:
+  - config-setup
+
+- hosts: shard
+  roles:
+  - shard
+
+- hosts: shard-primary
+  roles:
+  - shard-setup
+
+- hosts: mongos
+  roles:
+  - mongos
+

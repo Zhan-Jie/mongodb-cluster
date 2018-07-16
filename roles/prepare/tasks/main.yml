@@ -1,0 +1,5 @@
+- name: 创建目录
+  file: name=/home/mongodb state=directory
+
+- name: 生成keyFile
+  shell: "echo hello > /home/mongodb/key"

@@ -1,0 +1,21 @@
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/log/mongodb/shard-1.log
+storage:
+  dbPath: /var/lib/mongodb/shard-1
+  journal:
+    enabled: true
+processManagement:
+  fork: true
+  pidFilePath: /var/run/mongodb/shard-1.pid
+net:
+  port: 27018
+  bindIp: {{ ansible_default_ipv4.address }},127.0.0.1
+security:
+  authorization: enabled
+  keyFile: /home/mongodb/key
+replication:
+  replSetName: rs1
+Sharding:
+  clusterRole: shardsvr

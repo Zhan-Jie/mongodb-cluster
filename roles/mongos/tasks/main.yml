@@ -1,0 +1,16 @@
+- name: 创建相关目录
+  file: name={{ item }} state=directory
+  with:
+  - /var/log/mongodb
+  - /var/run/mongodb
+  - /home/mongodb
+
+- name: 产生文件
+  template: src=mongos.conf.j2 dest=/etc/mongos.conf
+
+- name: 启动mongodb
+  shell: "mongos -f /etc/mongos.conf"
+
+- name: 添加shard
+  shell: "mongo admin -u root -p root --eval 'sh.addShard(rs1/{{ SHARD_LIST }})'"
+  run_once: true
