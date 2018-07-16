@@ -1,6 +1,6 @@
 - name: 创建相关目录
   file: name={{ item }} state=directory
-  with:
+  with_items:
   - /var/log/mongodb
   - /var/lib/mongodb/config
   - /var/run/mongodb

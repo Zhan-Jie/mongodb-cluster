@@ -1,3 +1,11 @@
+- name: 删除相关目录
+  file: name={{ item }} state=directory
+  with_items:
+  - /var/log/mongodb
+  - /var/lib/mongodb/config
+  - /var/run/mongodb
+  - /home/mongodb
+
 - name: 创建目录
   file: name=/home/mongodb state=directory
 
