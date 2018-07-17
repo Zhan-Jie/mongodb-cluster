@@ -28,6 +28,6 @@
     file: name={{ item }} state=absent
     with_items:
     - /var/log/mongodb
-    - /var/lib/mongodb/config
+    - /var/lib/mongodb
     - /var/run/mongodb
     - /home/mongodb
