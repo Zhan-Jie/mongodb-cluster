@@ -12,4 +12,4 @@ security:
   keyFile: /home/mongodb/key
 
 sharding:
-  configDB: rs0/{% for node_ip in groups['config-secondary'] %}{{ node_ip }}:27017{% if not loop.last %},{% endif %}{% endfor %}
+  configDB: rs0/{% for node_ip in groups['config'] %}{{ node_ip }}:27019{% if not loop.last %},{% endif %}{% endfor %}
