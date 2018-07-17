@@ -1,0 +1,33 @@
+- hosts: mongos
+  tasks:
+  - name: 关闭mongodb
+    shell: "{{ bin_dir }}/mongos -f /etc/mongos.conf --shutdown"
+    ignore_errors: true
+  - name: 删除配置文件
+    file: name=/etc/mongos.conf state=absent
+
+- hosts: shard
+  tasks:
+  - name: 关闭mongodb
+    shell: "{{ bin_dir }}/mongod -f /etc/mongo-shard-1.conf --shutdown"
+    ignore_errors: true
+  - name: 删除配置文件
+    file: name=/etc/mongo-shard-1.conf state=absent
+
+- hosts: config
+  tasks:
+  - name: 关闭mongodb
+    shell: "{{ bin_dir }}/mongod -f /etc/mongo-config.conf --shutdown"
+    ignore_errors: true
+  - name: 删除配置文件
+    file: name=/etc/mongo-config.conf state=absent
+
+- hosts: cluster
+  tasks:
+  - name: 删除相关目录
+    file: name={{ item }} state=absent
+    with_items:
+    - /var/log/mongodb
+    - /var/lib/mongodb/config
+    - /var/run/mongodb
+    - /home/mongodb

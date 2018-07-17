@@ -24,7 +24,7 @@ config-secondary
 shard-primary
 shard-secondary
 
-[cluster]
+[cluster:children]
 mongos
 shard
 config
