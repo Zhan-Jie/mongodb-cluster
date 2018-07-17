@@ -1,7 +1,7 @@
 - hosts: mongos
   tasks:
   - name: 关闭mongodb
-    shell: "{{ bin_dir }}/mongos -f /etc/mongos.conf --shutdown"
+    shell: "{{ bin_dir }}/mongo -u root -p root --port 27017 --eval 'db.shutdownServer()'"
     ignore_errors: true
   - name: 删除配置文件
     file: name=/etc/mongos.conf state=absent
