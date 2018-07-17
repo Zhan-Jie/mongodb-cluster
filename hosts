@@ -24,5 +24,13 @@ config-secondary
 shard-primary
 shard-secondary
 
+[cluster]
+mongos
+shard
+config
+
 [mongos:vars]
 SHARD_LIST="172.27.24.146:27018,172.27.24.130:27018,172.27.24.176:27018"
+
+[cluster:vars]
+bin_dir="/opt/mongodb-4.0.0/bin"

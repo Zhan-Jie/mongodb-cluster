@@ -10,4 +10,4 @@
   template: src=config.conf.j2 dest=/etc/mongo-config.conf
 
 - name: 启动mongodb
-  shell: "mongod -f /etc/mongo-config.conf"
+  shell: "{{ bin_dir }}/mongod -f /etc/mongo-config.conf"

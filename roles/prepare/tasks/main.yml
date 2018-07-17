@@ -1,5 +1,5 @@
 - name: 删除相关目录
-  file: name={{ item }} state=directory
+  file: name={{ item }} state=absent
   with_items:
   - /var/log/mongodb
   - /var/lib/mongodb/config
@@ -10,4 +10,7 @@
   file: name=/home/mongodb state=directory
 
 - name: 生成keyFile
-  shell: "echo hello > /home/mongodb/key"
+  shell: "echo hellosb > /home/mongodb/key"
+
+- name: 设置keyFile文件权限
+  shell: "chmod 400 /home/mongodb/key"

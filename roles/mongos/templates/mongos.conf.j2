@@ -11,5 +11,5 @@ net:
 security:
   keyFile: /home/mongodb/key
 
-Sharding:
+sharding:
   configDB: rs0/{% for node_ip in groups['config-secondary'] %}{{ node_ip }}:27017{% if not loop.last %},{% endif %}{% endfor %}

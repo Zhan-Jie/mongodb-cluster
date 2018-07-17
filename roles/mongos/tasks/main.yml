@@ -9,8 +9,8 @@
   template: src=mongos.conf.j2 dest=/etc/mongos.conf
 
 - name: 启动mongodb
-  shell: "mongos -f /etc/mongos.conf"
+  shell: "{{ bin_dir }}/mongos -f /etc/mongos.conf"
 
 - name: 添加shard
-  shell: "mongo admin -u root -p root --eval 'sh.addShard(rs1/{{ SHARD_LIST }})'"
+  shell: "{{ bin_dir }}/mongo admin --port 27017 -u root -p root --eval 'sh.addShard(rs1/{{ SHARD_LIST }})'"
   run_once: true
